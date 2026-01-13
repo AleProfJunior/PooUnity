@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (jogador.Atributos.vida == 0)
+        if (jogador.GetVida == 0)
         {
             gameoverTela.SetActive(true);
         }

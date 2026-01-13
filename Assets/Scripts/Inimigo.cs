@@ -3,8 +3,6 @@ using Random = UnityEngine.Random;
 
 public class Inimigo : Personagem
 {
-    private Vector3 direcaoMovimento = new Vector3(1, 0, 1);
-
     protected override void Awake()
     {
         base.Awake();
@@ -16,8 +14,6 @@ public class Inimigo : Personagem
     {
         AtualizaRotacao();
     }
-
-
 
     private void FixedUpdate()
     {

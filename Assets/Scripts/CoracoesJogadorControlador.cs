@@ -9,7 +9,7 @@ public class CoracoesJogadorControlador : MonoBehaviour
 
     private void FixedUpdate()
     { 
-        int quantidadeVida = jogador.Atributos.vida;
+        int quantidadeVida = jogador.GetVida;
         for (int i = 0; i < coracoes.Length; i++)
         {
             if (quantidadeVida > i)

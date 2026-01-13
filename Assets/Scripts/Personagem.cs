@@ -1,11 +1,13 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public abstract class Personagem : MonoBehaviour, IDanificavel
 {
     protected Rigidbody rigidBody;
-    [SerializeField] public Atributos Atributos;
+    [SerializeField] protected Atributos Atributos;
+    protected Vector3 direcaoMovimento = new Vector3(1, 0, 1);
+    public int GetVida => Atributos.vida;
+
+
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -18,6 +20,8 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
             danificavel.AplicarDano(Atributos.dano);
         }
     }
+    
+    
     
     public void AplicarDano(int dano)
     {

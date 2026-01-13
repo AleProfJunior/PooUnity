@@ -11,7 +11,7 @@ public class Seguidor : MonoBehaviour
       posicaoPadrao = (transform.position - alvo.position);
    }
 
-   private void LateUpdate()
+   private void FixedUpdate()
    {
         transform.position = alvo.position + posicaoPadrao;
 

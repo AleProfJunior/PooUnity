@@ -9,7 +9,6 @@ public class Jogador : Personagem
     [SerializeField] Color ColorInicial;
     [SerializeField] private float alturaPulo = 20;
     public Animator animatior;
-    Vector3 direcaoMovimento;
     private AudioSource audioSource;
     private bool pulando = false;
     [SerializeField] private AudioClip puloAudioClip;
@@ -19,14 +18,12 @@ public class Jogador : Personagem
         base.Awake();
         audioSource =  GetComponent<AudioSource>();
         material.color = ColorInicial;
-
-
     }
 
     private void Update()
     {
-        float xInput = Input.GetAxisRaw("Horizontal");
-        float zInput = Input.GetAxisRaw("Vertical");
+        float xInput = Input.GetAxis("Horizontal");
+        float zInput = Input.GetAxis("Vertical");
         direcaoMovimento = new Vector3(xInput, 0, zInput).normalized;
         
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direcaoMovimento),20*Time.deltaTime);
@@ -44,7 +41,6 @@ public class Jogador : Personagem
 
     private void FixedUpdate()
     {
-        direcaoMovimento.y = rigidBody.linearVelocity.y;
         Mover(direcaoMovimento);
     }
 
