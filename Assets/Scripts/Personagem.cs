@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Personagem : MonoBehaviour, IDanificavel
@@ -7,6 +8,20 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
     protected Vector3 direcaoMovimento = new Vector3(1, 0, 1);
     public int GetVida => Atributos.vida;
 
+    public event Action Morreu;
+    
+    private void OnEnable()
+    {
+        Morreu += DesativarObjeto;
+    }
+    private void OnDisable()
+    {
+        Morreu -= DesativarObjeto;
+    }
+
+    private void DesativarObjeto()
+    {
+    }
 
     protected virtual void Awake()
     {
@@ -28,18 +43,20 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
         Atributos.vida -= dano;
         if (Atributos.vida <= 0)
         {
+            Morreu.Invoke();
             Morrer();
         }
     }
 
     protected void Mover(Vector3 direcao)
     {
-        Vector3 velocidadeH = direcao * (Atributos.velocidade * Time.fixedDeltaTime);
+        Vector3 velocidadeH = direcao.normalized * (Atributos.velocidade * Time.fixedDeltaTime);
         rigidBody.linearVelocity = new Vector3(velocidadeH.x, rigidBody.linearVelocity.y, velocidadeH.z);
     }
 
     public void Morrer()
     {
+        
         this.gameObject.SetActive(false);
     }
 

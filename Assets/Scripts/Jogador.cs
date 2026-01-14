@@ -22,9 +22,9 @@ public class Jogador : Personagem
 
     private void Update()
     {
-        float xInput = Input.GetAxis("Horizontal");
-        float zInput = Input.GetAxis("Vertical");
-        direcaoMovimento = new Vector3(xInput, 0, zInput).normalized;
+        float xInput = Input.GetAxisRaw("Horizontal");
+        float zInput = Input.GetAxisRaw("Vertical");
+        direcaoMovimento = new Vector3(xInput, 0, zInput);
         
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direcaoMovimento),20*Time.deltaTime);
         
