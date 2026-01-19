@@ -21,6 +21,7 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
 
     private void DesativarObjeto()
     {
+        this.gameObject.SetActive(false);
     }
 
     protected virtual void Awake()
@@ -47,7 +48,6 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
         if (Atributos.vida <= 0)
         {
             Morreu.Invoke();
-            Morrer();
         }
     }
 
@@ -56,13 +56,6 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
         Vector3 velocidadeH = direcao.normalized * (Atributos.velocidade * Time.fixedDeltaTime);
         rigidBody.linearVelocity = new Vector3(velocidadeH.x, rigidBody.linearVelocity.y, velocidadeH.z);
     }
-
-    public void Morrer()
-    {
-        
-        this.gameObject.SetActive(false);
-    }
-
-
+    
     
 }
