@@ -30,14 +30,17 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
 
     protected virtual void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.TryGetComponent(out IDanificavel danificavel))
+        if (!other.gameObject.CompareTag(gameObject.tag))
         {
-            danificavel.AplicarDano(Atributos.dano);
+            if (other.gameObject.TryGetComponent(out IDanificavel danificavel))
+            {
+                danificavel.AplicarDano(Atributos.dano);
+            }
         }
     }
-    
-    
-    
+
+
+
     public void AplicarDano(int dano)
     {
         Atributos.vida -= dano;
