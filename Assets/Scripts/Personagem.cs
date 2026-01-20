@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Personagem : MonoBehaviour, IDanificavel
 {
@@ -8,15 +8,15 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
     protected Vector3 direcaoMovimento = new Vector3(1, 0, 1);
     public int GetVida => Atributos.vida;
 
-    public event Action Morreu;
-    
+    public UnityEvent Morreu;
+
     private void OnEnable()
     {
-        Morreu += DesativarObjeto;
+        Morreu.AddListener(DesativarObjeto);
     }
     private void OnDisable()
     {
-        Morreu -= DesativarObjeto;
+        Morreu.RemoveListener(DesativarObjeto);
     }
 
     private void DesativarObjeto()
@@ -56,6 +56,6 @@ public abstract class Personagem : MonoBehaviour, IDanificavel
         Vector3 velocidadeH = direcao.normalized * (Atributos.velocidade * Time.fixedDeltaTime);
         rigidBody.linearVelocity = new Vector3(velocidadeH.x, rigidBody.linearVelocity.y, velocidadeH.z);
     }
-    
-    
+
+
 }

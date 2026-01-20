@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text text_tempo;
-    [SerializeField] private Jogador jogador;
     [SerializeField] private GameObject gameoverTela;
-    
+
     private void Start()
     {
         gameoverTela.SetActive(false);
@@ -21,13 +20,6 @@ public class GameManager : MonoBehaviour
         StopCoroutine(Temporizador());
     }
 
-    private void Update()
-    {
-        if (jogador.GetVida == 0)
-        {
-            gameoverTela.SetActive(true);
-        }
-    }
 
 
     public void ReiniciarCena()
