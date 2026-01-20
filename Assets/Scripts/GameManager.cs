@@ -14,13 +14,10 @@ public class GameManager : MonoBehaviour
         gameoverTela.SetActive(false);
         StartCoroutine(Temporizador());
     }
-
     private void OnDestroy()
     {
         StopCoroutine(Temporizador());
     }
-
-
 
     public void ReiniciarCena()
     {

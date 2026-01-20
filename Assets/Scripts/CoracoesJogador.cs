@@ -1,19 +1,28 @@
-using System;
 using UnityEngine;
 
-public class CoracoesJogadorControlador : MonoBehaviour
+public class CoracoesJogador : MonoBehaviour
 {
     [SerializeField] private Jogador jogador;
 
     [SerializeField] private GameObject[] coracoes;
 
-    private void FixedUpdate()
-    { 
-        int quantidadeVida = jogador.GetVida;
+    private void OnEnable()
+    {
+        jogador.VidaMudou += AatualizarCoracoes;
+    }
+
+    private void OnDisable()
+    {
+        jogador.VidaMudou -= AatualizarCoracoes;
+
+    }
+
+    private void AatualizarCoracoes(int vida)
+    {
         for (int i = 0; i < coracoes.Length; i++)
         {
-            if (quantidadeVida > i)
-            { 
+            if (vida > i)
+            {
                 coracoes[i].SetActive(true);
             }
             else
@@ -21,5 +30,8 @@ public class CoracoesJogadorControlador : MonoBehaviour
                 coracoes[i].SetActive(false);
             }
         }
+
     }
+
+
 }

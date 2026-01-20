@@ -1,13 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GeradorDeInimigos : MonoBehaviour
 {
-    [SerializeField] private GameObject[] array;
-    [SerializeField] private List<GameObject> list;
-    [SerializeField] private HashSet<GameObject> hashSet;
-
 
     [SerializeField] private int maximo = 50;
     [SerializeField] private Inimigo[] inimigos;
@@ -35,6 +30,5 @@ public class GeradorDeInimigos : MonoBehaviour
         var inimigoEscolhido = inimigos[indiceAleatorio];
         Instantiate(inimigoEscolhido, transform.position, Quaternion.identity);
     }
-
 
 }
